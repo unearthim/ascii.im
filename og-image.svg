@@ -1,0 +1,28 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .bg { fill: #000000; }
+        .text {
+            font-family: 'VT323', monospace;
+            fill: #ffb000;
+            text-shadow: 0 0 5px #ff8800, 0 0 10px #ff4400;
+        }
+        .logo {
+            font-size: 80px;
+            text-anchor: middle;
+            white-space: pre;
+        }
+        .tagline {
+            font-size: 40px;
+            text-anchor: middle;
+        }
+    </style>
+    <rect class="bg" width="1200" height="630"/>
+    <text x="600" y="200" class="text logo">
+        <tspan x="600" dy="0">    .   .                 </tspan>
+        <tspan x="600" dy="1.2em">   / \ / \                </tspan>
+        <tspan x="600" dy="1.2em">  ( M | E )  A S C I I . I M</tspan>
+        <tspan x="600" dy="1.2em">   \ / \ /                </tspan>
+        <tspan x="600" dy="1.2em">    '   '</tspan>
+    </text>
+    <text x="600" y="450" class="text tagline">Warmth, encoded.</text>
+</svg>
