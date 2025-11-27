@@ -237,6 +237,9 @@
         // --- MAIN APP ---
         const App = () => {
             const [showStatement, setShowStatement] = useState(false);
+            const [audioEnabled, setAudioEnabled] = useState(false);
+            const [volume, setVolume] = useState(0.5);
+            const audioRef = useRef(null);
             
             // State initialized with Date logic, but mutable for preview
             const [season, setSeason] = useState(() => {
@@ -256,6 +259,25 @@
             });
 
             const mantleDecor = MANTLE_ART[season] || MANTLE_ART.DEFAULT;
+
+            // Handle audio toggle
+            useEffect(() => {
+                if (audioRef.current) {
+                    audioRef.current.volume = volume;
+                    if (audioEnabled) {
+                        const playPromise = audioRef.current.play();
+                        if (playPromise !== undefined) {
+                            playPromise.catch(err => {
+                                console.log('Audio play failed:', err);
+                                setAudioEnabled(false); // Reset if failed
+                            });
+                        }
+                    } else {
+                        audioRef.current.pause();
+                        audioRef.current.currentTime = 0; // Reset to start
+                    }
+                }
+            }, [audioEnabled, volume]);
 
             return (
                 <div className="relative w-full h-screen flex flex-col items-center justify-center bg-black crt p-4">
@@ -322,6 +344,47 @@
                         {/* HEARTH STONE */}
                         <div className="w-[70ch] h-4 bg-amber-900/40 mt-0 border-t border-amber-500/20"></div>
 
+                    </div>
+
+                    {/* AUDIO ELEMENT */}
+                    <audio 
+                        ref={audioRef}
+                        loop
+                        preload="auto"
+                        playsInline
+                    >
+                        <source src="/fireplace-crackle.mp3" type="audio/mpeg" />
+                        <source src="./fireplace-crackle.mp3" type="audio/mpeg" />
+                    </audio>
+
+                    {/* AUDIO TOGGLE BUTTON & VOLUME CONTROL */}
+                    <div className="fixed top-4 right-4 z-10 flex flex-col gap-2 items-end">
+                        <button
+                            onClick={() => setAudioEnabled(!audioEnabled)}
+                            className="px-3 py-2 border border-amber-900/50 bg-black/80 text-amber-500 hover:text-amber-400 hover:border-amber-500/50 transition-all font-mono text-xs uppercase tracking-wider"
+                            title={audioEnabled ? "Mute fireplace" : "Play fireplace sounds"}
+                        >
+                            {audioEnabled ? '🔊 ON' : '🔇 OFF'}
+                        </button>
+                        
+                        {audioEnabled && (
+                            <div className="flex items-center gap-2 px-3 py-2 border border-amber-900/50 bg-black/80">
+                                <span className="text-amber-700 text-xs font-mono">VOL</span>
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max="1"
+                                    step="0.01"
+                                    value={volume}
+                                    onChange={(e) => setVolume(parseFloat(e.target.value))}
+                                    className="w-20 h-1 bg-amber-900/30 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-amber-500 [&::-webkit-slider-thumb]:cursor-pointer"
+                                    title="Adjust volume"
+                                />
+                                <span className="text-amber-700 text-xs font-mono min-w-[2ch]">
+                                    {Math.round(volume * 100)}
+                                </span>
+                            </div>
+                        )}
                     </div>
 
                     {/* BRANDING FOOTER */}
