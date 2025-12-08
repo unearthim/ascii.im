@@ -20,6 +20,76 @@
     <!-- Webmention Endpoint -->
     <link rel="webmention" href="https://webmention.io/unearth.im/webmention" />
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "VisualArtwork", 
+          "@id": "https://ascii.im/#artwork",
+          "url": "https://ascii.im",
+          "name": "ascii.im",
+          "headline": "Warmth, encoded. A digital monument by unearth.im.",
+          "description": "A digital hearth for the hand-built web. It honors the primitive grid that underpins our connection. The fire you see is not a video loop. It is a live cellular automaton, calculating heat and decay frame by frame, character by character.",
+          "image": "https://ascii.im/og-image.png",
+          "artMedium": "Generative JavaScript (React/Babel)",
+          "artForm": "Digital Monument",
+          "genre": "Interactive Art",
+          "copyrightYear": "2025",
+          "inLanguage": "en-US",
+          "author": [
+            { "@id": "https://josiest.com/#person" },
+            { "@id": "https://felixvelas.co/#person" }
+          ],
+          "creator": [
+            { "@id": "https://josiest.com/#person" },
+            { "@id": "https://felixvelas.co/#person" }
+          ],
+          "publisher": { "@id": "https://unearth.im/#organization" },
+          "isPartOf": { "@id": "https://unearth.im/#collection" },
+          "mainEntityOfPage": { "@id": "https://ascii.im/#website" }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://ascii.im/#website",
+          "url": "https://ascii.im",
+          "name": "ascii.im",
+          "publisher": { "@id": "https://unearth.im/#organization" }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://unearth.im/#organization",
+          "name": "unearth.im",
+          "url": "https://unearth.im",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://unearth.im/favicon-32x32.png"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://josiest.com/#person",
+          "name": "Josie Jefferson",
+          "url": "https://josiest.com",
+          "jobTitle": "Digital Archaeologist",
+          "sameAs": [
+            "https://notjojo.im",
+            "https://notjojo.org"
+          ],
+          "affiliation": { "@id": "https://unearth.im/#organization" }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://felixvelas.co/#person",
+          "name": "Felix Velasco",
+          "url": "https://felixvelas.co",
+          "jobTitle": "Trust Architect",
+          "affiliation": { "@id": "https://unearth.im/#organization" }
+        }
+      ]
+    }
+    </script>
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ascii.im/">
