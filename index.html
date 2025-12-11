@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
+
     <!-- Primary Meta Tags -->
     <title>ascii.im</title>
     <meta name="title" content="ascii.im">
-    <meta name="description" content="Warmth, encoded. A digital monument by unearth heritage foundry | archive & anvil, celebrating the primitive grid that underpins our connection.">
+    <meta name="description"
+        content="Warmth, encoded. A digital monument by unearth heritage foundry | archive & anvil, celebrating the primitive grid that underpins our connection.">
     <meta name="keywords" content="ascii, fire, text art, generative art, unearth.im, digital monument">
     <meta name="author" content="ascii.im (by unearth heritage foundry - archive & anvil - unearth.im)">
     <meta name="robots" content="index, follow">
@@ -60,7 +62,7 @@
           "@type": "Organization",
           "@id": "https://unearth.im/#organization",
           "name": "Unearth Heritage Foundry",
-"alternateName": ["Unearth Foundry", "Archive & Anvil"],
+"alternateName": ["Unearth Foundry","Archive & Anvil","Unearth Anvil","Unearth Works","Cultural Infrastructure Foundry"],
           "url": "https://unearth.im",
           "logo": {
             "@type": "ImageObject",
@@ -91,7 +93,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ascii.im/">
     <meta property="og:title" content="ascii.im">
-    <meta property="og:description" content="Warmth, encoded. A digital monument by unearth heritage foundry | archive & anvil.">
+    <meta property="og:description"
+        content="Warmth, encoded. A digital monument by unearth heritage foundry | archive & anvil.">
     <meta property="og:image" content="https://ascii.im/og-image.png">
     <meta property="og:site_name" content="ascii.im">
 
@@ -99,7 +102,8 @@
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://ascii.im/">
     <meta property="twitter:title" content="ascii.im">
-    <meta property="twitter:description" content="Warmth, encoded. A digital monument by unearth heritage foundry | archive & anvil.">
+    <meta property="twitter:description"
+        content="Warmth, encoded. A digital monument by unearth heritage foundry | archive & anvil.">
     <meta property="twitter:image" content="https://ascii.im/og-image.png">
 
     <!-- Favicons -->
@@ -110,14 +114,14 @@
     <!-- Brand Color Meta Tags -->
     <meta name="theme-color" content="#000000">
     <meta name="msapplication-TileColor" content="#ffb000">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- React & ReactDOM -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
+
     <!-- Babel for JSX -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
@@ -132,8 +136,10 @@
             overflow: hidden;
             background-color: #000000;
             font-family: 'VT323', monospace;
-            color: #ffb000; /* Amber */
+            color: #ffb000;
+            /* Amber */
         }
+
         /* Scanline effect */
         .crt::before {
             content: " ";
@@ -148,25 +154,43 @@
             background-size: 100% 2px, 3px 100%;
             pointer-events: none;
         }
+
         .glow {
             text-shadow: 0 0 5px #ff8800, 0 0 10px #ff4400;
         }
+
         /* Breathing animation for CTA */
         @keyframes breathe {
-            0%, 100% { opacity: 1; text-shadow: 0 0 5px #ff8800, 0 0 10px #ff4400; }
-            50% { opacity: 0.7; text-shadow: 0 0 2px #cc6600, 0 0 5px #cc3300; }
+
+            0%,
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 5px #ff8800, 0 0 10px #ff4400;
+            }
+
+            50% {
+                opacity: 0.7;
+                text-shadow: 0 0 2px #cc6600, 0 0 5px #cc3300;
+            }
         }
+
         .animate-breathe {
             animation: breathe 4s ease-in-out infinite;
         }
+
         pre {
-            line-height: 1; /* Tighter line height for ASCII density */
+            line-height: 1;
+            /* Tighter line height for ASCII density */
             white-space: pre;
         }
+
         /* Custom scrollbar hide */
-        ::-webkit-scrollbar { display: none; }
+        ::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
+
 <body>
     <div id="root"></div>
 
@@ -228,13 +252,13 @@
         // --- ASCII FIRE COMPONENT ---
         const AsciiFire = () => {
             const [fireString, setFireString] = useState("");
-            
+
             // Grid dimensions (Characters)
             const WIDTH = 60;
             const HEIGHT = 25;
-            
+
             // The ASCII Ramp (Dark to Light)
-            const CHARS = " .,:;i1tfLCG08@"; 
+            const CHARS = " .,:;i1tfLCG08@";
 
             const firePixels = useRef(new Array(WIDTH * HEIGHT).fill(0));
 
@@ -256,9 +280,9 @@
                             const srcIndex = (y + 1) * WIDTH + x;
                             const decay = Math.floor(Math.random() * 2); // Random cooling
                             const wind = Math.floor(Math.random() * 3) - 1; // -1, 0, 1 horizontal shift
-                            
+
                             const dstIndex = y * WIDTH + x + wind; // Apply wind
-                            
+
                             // Prevent wrapping around edges
                             if (dstIndex >= y * WIDTH && dstIndex < (y + 1) * WIDTH) {
                                 let newHeat = pixels[srcIndex] - decay;
@@ -284,7 +308,7 @@
                     // Slow down the frame rate slightly for that "terminal" feel
                     setTimeout(() => {
                         frameId = requestAnimationFrame(calculateFire);
-                    }, 50); 
+                    }, 50);
                 };
 
                 calculateFire();
@@ -307,18 +331,18 @@
             const [audioEnabled, setAudioEnabled] = useState(false);
             const [volume, setVolume] = useState(0.5);
             const audioRef = useRef(null);
-            
+
             // State initialized with Date logic, but mutable for preview
             const [season, setSeason] = useState(() => {
                 const today = new Date();
                 const month = today.getMonth(); // 0-11
                 const day = today.getDate();
 
-                if (month === 9) return 'HALLOWEEN'; 
+                if (month === 9) return 'HALLOWEEN';
                 if (month === 10) return 'THANKSGIVING';
                 if ((month === 11 && day === 31) || (month === 0 && day === 1)) return 'NEWYEAR';
-                if (month === 11) return 'WINTER'; 
-                if (month === 1 && day > 7 && day < 20) return 'VALENTINE'; 
+                if (month === 11) return 'WINTER';
+                if (month === 1 && day > 7 && day < 20) return 'VALENTINE';
                 if (month === 2 && day === 17) return 'STPATRICK'; // March 17
                 if (month === 3 && day === 1) return 'GLITCH'; // April 1
 
@@ -348,14 +372,14 @@
 
             return (
                 <div className="relative w-full h-screen flex flex-col items-center justify-center bg-black crt p-4">
-                    
+
                     {/* ASCII HEADER / CTA */}
-                    <div 
+                    <div
                         onClick={() => setShowStatement(true)}
                         className="mb-8 text-amber-500 text-xs md:text-sm select-none animate-breathe cursor-pointer hover:text-amber-400 transition-colors duration-300 glow"
                         title="Read Artist Statement"
                     >
-<pre>{`
+                        <pre>{`
     .   .                 
    / \\ / \\                
   ( M | E )  A S C I I . I M
@@ -366,20 +390,20 @@
 
                     {/* THE HEARTH STRUCTURE */}
                     <div className="relative flex flex-col items-center max-w-full">
-                        
+
                         {/* MANTLE DECOR (Generated) */}
                         <div className="w-full flex justify-between px-4 mb-1 text-amber-600 select-none transition-opacity duration-500">
-                             <pre>{mantleDecor.join('\n')}</pre>
-                             {/* Mirror the decor for symmetry (except for Glitch/NewYear if asymmetric text) */}
-                             {/* Since our art is mostly symmetric or text-based, simple mirroring is risky for text.
+                            <pre>{mantleDecor.join('\n')}</pre>
+                            {/* Mirror the decor for symmetry (except for Glitch/NewYear if asymmetric text) */}
+                            {/* Since our art is mostly symmetric or text-based, simple mirroring is risky for text.
                                  Let's keep the simple mirror for now as the text "2026" is only on one side in the logic above. 
                                  Actually, for NEWYEAR, the array has '2026' on the right. 
                                  Mirroring it on the right column would flip the numbers. 
                                  Let's just duplicate the decor without flipping scale-x for safety on text seasons.
                              */}
-                             <pre className={`${['NEWYEAR', 'GLITCH'].includes(season) ? '' : 'transform -scale-x-100'}`}>
+                            <pre className={`${['NEWYEAR', 'GLITCH'].includes(season) ? '' : 'transform -scale-x-100'}`}>
                                 {mantleDecor.join('\n')}
-                             </pre>
+                            </pre>
                         </div>
 
                         {/* MANTLE SHELF */}
@@ -387,34 +411,34 @@
 
                         {/* FIREPLACE SURROUND */}
                         <div className="flex relative">
-                             {/* Left Pillar */}
-                             <div className="w-[2ch] bg-amber-900/20 border-r border-amber-900/50 hidden md:block"></div>
-                             
-                             {/* The Fire Container */}
-                             <div className="bg-black border-x-4 border-t-4 border-amber-900/30 px-2 pt-4 pb-0 min-h-[300px]">
+                            {/* Left Pillar */}
+                            <div className="w-[2ch] bg-amber-900/20 border-r border-amber-900/50 hidden md:block"></div>
+
+                            {/* The Fire Container */}
+                            <div className="bg-black border-x-4 border-t-4 border-amber-900/30 px-2 pt-4 pb-0 min-h-[300px]">
                                 <AsciiFire />
                                 {/* Log ASCII Overlay */}
                                 <div className="absolute bottom-2 left-0 right-0 text-center text-amber-800 pointer-events-none select-none">
-<pre>{`
+                                    <pre>{`
   _______(_______)_______
  /  __________  /  ___   \\
 (  (__________)  (____)   )
  \\_______________________/ 
 `}</pre>
                                 </div>
-                             </div>
+                            </div>
 
-                             {/* Right Pillar */}
-                             <div className="w-[2ch] bg-amber-900/20 border-l border-amber-900/50 hidden md:block"></div>
+                            {/* Right Pillar */}
+                            <div className="w-[2ch] bg-amber-900/20 border-l border-amber-900/50 hidden md:block"></div>
                         </div>
-                        
+
                         {/* HEARTH STONE */}
                         <div className="w-[70ch] h-4 bg-amber-900/40 mt-0 border-t border-amber-500/20"></div>
 
                     </div>
 
                     {/* AUDIO ELEMENT */}
-                    <audio 
+                    <audio
                         ref={audioRef}
                         loop
                         preload="auto"
@@ -433,7 +457,7 @@
                         >
                             {audioEnabled ? '🔊 ON' : '🔇 OFF'}
                         </button>
-                        
+
                         {audioEnabled && (
                             <div className="flex items-center gap-2 px-3 py-2 border border-amber-900/50 bg-black/80">
                                 <span className="text-amber-700 text-xs font-mono">VOL</span>
@@ -460,7 +484,7 @@
                             &lt; SYSTEM: ONLINE &gt;
                         </p>
                         <p className="text-amber-800/60 text-[10px] mt-1 font-mono lowercase">
-                            a <a href="https://sentientification.com" target="_blank" rel="noopener noreferrer" className="text-amber-700 hover:text-amber-500 hover:underline decoration-amber-500/30 font-bold">liminal mind meld</a> collaboration:<br/>
+                            a <a href="https://sentientification.com" target="_blank" rel="noopener noreferrer" className="text-amber-700 hover:text-amber-500 hover:underline decoration-amber-500/30 font-bold">liminal mind meld</a> collaboration:<br />
                             digital monument by <a href="https://unearth.im" target="_blank" rel="noopener noreferrer" className="text-amber-700 hover:text-amber-500 hover:underline decoration-amber-500/30 font-bold">unearth.im</a> | <a href="https://archaeobytology.org" target="_blank" rel="noopener noreferrer" className="text-amber-700 hover:text-amber-500 hover:underline decoration-amber-500/30 font-bold">archive &amp; anvil</a>
                         </p>
                     </div>
@@ -485,25 +509,25 @@
 
                     {/* ARTIST STATEMENT MODAL */}
                     {showStatement && (
-                        <div 
+                        <div
                             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4"
                             onClick={() => setShowStatement(false)}
                         >
-                            <div 
+                            <div
                                 className="bg-black border border-amber-500/50 p-8 max-w-lg w-full shadow-[0_0_20px_rgba(255,176,0,0.2)] text-amber-500 relative"
                                 onClick={e => e.stopPropagation()}
                             >
-                                <button 
+                                <button
                                     onClick={() => setShowStatement(false)}
                                     className="absolute top-2 right-4 text-amber-700 hover:text-amber-500 font-bold"
                                 >
                                     [X]
                                 </button>
-                                
+
                                 <h2 className="text-2xl font-bold mb-6 glow text-center uppercase tracking-widest">
                                     The Raw Code of Warmth
                                 </h2>
-                                
+
                                 <div className="space-y-4 text-lg leading-relaxed text-amber-500/90 font-mono">
                                     <p>
                                         Before high-definition, before the cloud, before the metaverse—there was just text.
@@ -512,7 +536,7 @@
                                         <strong>ascii.im</strong> is a digital hearth for the hand-built web. It honors the primitive grid that underpins our connection.
                                     </p>
                                     <p>
-                                        The fire you see is not a video loop. It is a live cellular automaton, calculating heat and decay frame by frame, character by character. 
+                                        The fire you see is not a video loop. It is a live cellular automaton, calculating heat and decay frame by frame, character by character.
                                     </p>
                                     <p className="text-center pt-4 italic text-amber-600">
                                         Warmth, encoded.
@@ -534,4 +558,5 @@
         root.render(<App />);
     </script>
 </body>
+
 </html>
